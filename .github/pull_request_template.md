@@ -1,4 +1,5 @@
 Selecione o tipo do PR:
+
 - [ ] Bug
 - [ ] Optimization
 - [ ] Documentation Update
