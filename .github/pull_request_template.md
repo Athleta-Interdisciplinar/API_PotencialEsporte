@@ -1,9 +1,11 @@
 Selecione o tipo do PR:
 
-[] Refactor
-[] Feature
-[] Bug Fix
-[] Optimization
-[] Documentation Update
+- [ ] Bug
+- [ ] Optimization
+- [ ] Documentation Update
+ 
+Cumpriu os seguinte resquisitos:
+- [ ] Possui comentários
+- [ ] Código limpo
 
 Descrição:
