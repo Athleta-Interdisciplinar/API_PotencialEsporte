@@ -1,0 +1,12 @@
+Flask
+pandas
+scikit-learn
+numpy
+gunicorn
+flake8
+pytest
+pytest-cov
+twine
+mkdocs
+docutils
+coverage
