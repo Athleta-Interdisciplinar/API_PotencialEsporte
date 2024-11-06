@@ -2,8 +2,10 @@ from flask import Flask, request, jsonify
 import pandas as pd
 import pickle
 from sklearn.preprocessing import LabelEncoder
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 with open('./pipeline_knn.pkl', 'rb') as file:
     pipeline = pickle.load(file)
