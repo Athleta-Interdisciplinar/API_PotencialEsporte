@@ -11,6 +11,9 @@ with open('./pipeline_knn.pkl', 'rb') as file:
 @app.route('/analise', methods=['POST'])
 def analisar():
     dados = request.json.get('dados')
+    if dados is None:
+        return jsonify({'erro': 'Dados não fornecidos'}), 400
+        
     dados_df = pd.DataFrame(dados)
 
     colunas_categoricas = dados_df.select_dtypes(include=['object']).columns
@@ -23,4 +26,4 @@ def analisar():
     return jsonify({'resultado': resultado.tolist()})
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+   app.run(host='0.0.0.0', port=5000, debug=True)
