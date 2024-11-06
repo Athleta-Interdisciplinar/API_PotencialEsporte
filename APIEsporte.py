@@ -5,7 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 
 app = Flask(__name__)
 
-with open('Modelos serializados\\pipeline_knn.pkl', 'rb') as file:
+with open('./pipeline_knn.pkl', 'rb') as file:
     pipeline = pickle.load(file)
 
 @app.route('/analise', methods=['POST'])
