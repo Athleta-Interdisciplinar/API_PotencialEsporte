@@ -1,0 +1,33 @@
+name: pipeline API potencial esporte
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest 
+    
+    steps:
+    - name: Checando código
+      uses: actions/checkout@v3 
+
+    - name: Configurando a chave SSH
+      run: |
+        echo "${{ secrets.API_ESPORTE_SECRET}}" > private_key  # Usa a chave SSH armazenada no GitHub Secrets
+        chmod 600 private_key  # Dá permissão para a chave privada
+        mkdir -p ~/.ssh
+        mv private_key ~/.ssh/id_rsa  # Move a chave para o diretório correto
+        
+    - name: Conectando ao EC2 e fazendo deploy
+      run: |
+        echo "Conectando no EC2 e atualizando código..."
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@ec2-44-201-89-1.compute-1.amazonaws.com "
+        cd /home/ubuntu/python_flask/ && git pull origin main && ./iniciarApp.sh"
+      env:
+        AWS_EC2_IP: ${{ secrets.AWS_EC2_IP }}  # Pode armazenar o IP da sua instância como Secret, se preferir
+
+    - name: Confirmando o deploy
+      run: |
+        echo "Deploy concluído!"
